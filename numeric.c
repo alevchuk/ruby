@@ -414,6 +414,26 @@ num_remainder(VALUE x, VALUE y)
 
 /*
  *  call-seq:
+ *     float.signif(numeric)  ->  float
+ *
+ *  Returns a float rounded to the nearest <code>numeric</code>
+ *  siginficant figures.
+ *
+ *     (11.11).signif(1)   # => 10
+ *     (22.22).signif(2)   # => 22
+ *     (3.333).signif(2)   # => 3.3
+ *     (4.4).signif(3)     # => 4.4
+ *     (5.55).signif(2)    # => 5.6
+ */
+
+static VALUE
+flo_signif(VALUE x, VALUE y)
+{
+    return 1; //rb_funcall('"Float(%#{', x, '/', 1, y);
+}
+
+/*
+ *  call-seq:
  *     num.divmod(numeric)  ->  array
  *
  *  Returns an array containing the quotient and modulus obtained by
@@ -3694,6 +3714,7 @@ Init_Numeric(void)
     rb_define_method(rb_cFloat, "ceil", flo_ceil, 0);
     rb_define_method(rb_cFloat, "round", flo_round, -1);
     rb_define_method(rb_cFloat, "truncate", flo_truncate, 0);
+    rb_define_method(rb_cFloat, "signif", flo_signif, 1);
 
     rb_define_method(rb_cFloat, "nan?",      flo_is_nan_p, 0);
     rb_define_method(rb_cFloat, "infinite?", flo_is_infinite_p, 0);
